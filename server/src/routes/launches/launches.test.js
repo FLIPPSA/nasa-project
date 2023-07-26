@@ -1,10 +1,12 @@
 const request = require('supertest');
 const app = require('../../app');
 const { mongoConnect, mongoDisconnect } = require('../../services/mongo');
+const { loadPlanetsData } = require('../../models/planets.model');
 
 describe('Launches API', () => {
     beforeAll(async () => {
         await mongoConnect();
+        await loadPlanetsData();
     });
 
     describe('Test GET /launches', () => { // tests are defined in those callbacks that you pass in the describe function
